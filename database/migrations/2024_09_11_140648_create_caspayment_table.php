@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cas_payment', function (Blueprint $table) {
+        Schema::create('caspayment', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->decimal('amount_cas');
+            $table->timestamp('payment_date');
+            $table->string('payment_status');
             $table->timestamps();
         });
     }
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cas_payment');
+        Schema::dropIfExists('caspayment');
     }
 };

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('donation', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->dateTime('donation_date');
+            $table->timestamp('donation_date');
             $table->string('payment_method');
             $table->string('payment_status');
             $table->decimal('amount_donation');

@@ -5,15 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class report extends Model
+class caspayment extends Model
 {
     use HasFactory;
-    protected $table = 'Report';
-
+    protected $table = 'CasPayment';
     protected $fillable = [
-        'date_report',
-        'total_income',
-        'total_expense',
-        'balance'
+        'user_id',
+        'amount_cas',
+        'payment_date',
+        'payment_status'
     ];
 }
