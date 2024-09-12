@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('donatur', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('phone_number');
+            $table->foreignId('fundraising_id')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('total_amount');
+            $table->text('note');
+            $table->boolean('is_paid');
+            $table->string('proof');
             $table->timestamps();
         });
     }

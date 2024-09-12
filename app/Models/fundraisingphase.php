@@ -10,13 +10,13 @@ class fundraisingphase extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'fundraising_id',
+        'fundraisings_id',
         'photo',
         'note'
     ];
 
     //relasi kardinalitas
-    public function fundraising()
+    public function fundraisings()
     {
         return $this->belongsTo(fundraising::class);
     }
