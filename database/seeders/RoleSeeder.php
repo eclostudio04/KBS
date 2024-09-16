@@ -6,7 +6,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\User;
+use App\Models\User;
+// use Spatie\Permission\Models\User;
 
 
 class RoleSeeder extends Seeder
@@ -18,19 +19,21 @@ class RoleSeeder extends Seeder
     {
         //
 
-        $adminRole = Role::create([
-            'name' => 'admin'
+        $ownerRole = Role::create([
+            'name' => 'owner'
         ]);
 
         $fundraiserRole = Role::create([
             'name' => 'fundraiser'
         ]);
 
-        $userAdmin = \App\Models\User::create([
-            'name' => 'SuperAdminKbs',
-            'avatar' => 'images/avatar/default.jpg',
+        $userOwner = User::create([
+            'name' => 'Owner KBS',
+            'avatar' => 'images/default-avatar.png',
             'email' => 'kbskomunitasberbagisodara@gmail.com',
             'password' => bcrypt('adminkbs123')
         ]);
+
+        $userOwner->assignRole($ownerRole);
     }
 }

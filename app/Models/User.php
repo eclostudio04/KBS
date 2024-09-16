@@ -24,6 +24,12 @@ class User extends Authenticatable
         'avatar'
     ];
 
+    //
+    public function fundraiser()
+    {
+        return $this->hasOne(fundraiser::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

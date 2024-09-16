@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('note');
             $table->boolean('is_paid');
             $table->string('proof');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

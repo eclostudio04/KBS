@@ -22,6 +22,7 @@ return new class extends Migration
             $table->boolean('is_active');
             $table->boolean('has_finished');
             $table->unsignedBigInteger('target_amount');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
