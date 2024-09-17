@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function () {
             ->middleware('role:owner');
 
         // prefix donatur
-        Route::resource('donatur', DonaturController::class)
+        Route::resource('donaturs', DonaturController::class)
             ->middleware('role:owner');
 
         // prefix fandraiser
@@ -42,7 +42,7 @@ Route::middleware('auth')->group(function () {
             ->name('fundraisers.index');
 
         // prefix fundraisingwithdrawal
-        Route::resource('fundraisingwithdrawals', FundraisingWithdrawalController::class)
+        Route::resource('fundraising_withdrawals', FundraisingWithdrawalController::class)
             ->middleware('role:owner|fundraiser');
 
         Route::post('/fundraisingwithdrawals/request/{fundraising}', [FundraisingWithdrawalController::class, 'store'])

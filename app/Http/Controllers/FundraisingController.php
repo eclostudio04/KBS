@@ -9,7 +9,10 @@ class FundraisingController extends Controller
 {
     // **
     //display a listing of the resource
-    public function index() {}
+    public function index()
+    {
+        // return view('admin.fundraisings.index');
+    }
 
     //show the form for creating of resource
     public function create() {}

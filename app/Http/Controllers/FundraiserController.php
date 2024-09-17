@@ -7,4 +7,8 @@ use Illuminate\Http\Request;
 class FundraiserController extends Controller
 {
     //
+    public function index()
+    {
+        // return view('admin.fundraisings.index', FundraiserController::class);
+    }
 }

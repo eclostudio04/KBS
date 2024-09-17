@@ -13,13 +13,13 @@ class CategoryController extends Controller
     {
         $categories = category::all();
 
-        return view('amdin.categories.index', compact('categories'));
+        return view('admin.categories.index', compact('categories'));
     }
 
     //
     public function create()
     {
-        return view('amdin.categories.create');
+        return view('admin.categories.create');
     }
 
     //
@@ -31,7 +31,7 @@ class CategoryController extends Controller
     //
     public function edit(category $category)
     {
-        return view('amdin.categories.edit', compact('category'));
+        return view('admin.categories.edit', compact('category'));
     }
 
 

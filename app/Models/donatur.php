@@ -10,6 +10,7 @@ class donatur extends Model
 {
     use HasFactory, SoftDeletes;
     //
+    protected $table = 'donatur';
 
     //
     protected $fillable = [

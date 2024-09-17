@@ -10,7 +10,7 @@ class category extends Model
 {
     use HasFactory, SoftDeletes;
     // memberikan akses untuk tabel
-    protected $table = 'Category';
+    protected $table = 'categories';
 
     // memberikan akses untuk atribute tabel
     protected $fillable = [
