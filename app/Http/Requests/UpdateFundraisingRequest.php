@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreFundraisingRequest extends FormRequest
+class UpdateFundraisingRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,7 @@ class StoreFundraisingRequest extends FormRequest
             'name' => ['required', 'string', 'max:225'],
             'categories_id' => ['required', 'integer'],
             'target_amount' => ['required', 'integer'],
-            'thumbnail' => ['required', 'image', 'mimes:png,jpg,jpeg'],
+            'thumbnail' => ['sometimes', 'image', 'mimes:png,jpg,jpeg'],
             'about' => ['requires', 'string', 'max:7000'],
         ];
     }

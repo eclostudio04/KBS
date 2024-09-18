@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCategoryRequest;
 use App\Models\category;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -23,7 +26,29 @@ class CategoryController extends Controller
     }
 
     //
-    public function store(Request $request) {}
+    public function store(StoreCategoryRequest $request)
+    {
+        // membuat sistem untuk menyimpan data
+        // **
+        // melakukan validasi di StoreCategoryRequest.php
+        DB::transaction(function () use ($request) {
+            $validated = $request->validated();
+
+            if ($request->hasFile('icon')) {
+                $iconPath = $request->file('icon')->store('icons', 'public');
+                $validated['icon'] = $iconPath;
+            } else {
+                $iconPath = 'images/icons-category-default.png';
+            }
+
+            $validated['slug'] = Str::slug($validated['name']);
+
+            // proses penyimpanan data
+            $category = category::create($validated);
+        });
+
+        return redirect()->route('admin.categories.index');
+    }
 
     //
     public function show(category $category) {}

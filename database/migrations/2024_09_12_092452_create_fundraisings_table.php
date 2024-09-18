@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('thumbnail');
-            $table->text('about');
+            $table->string('about');
             $table->boolean('is_active');
             $table->boolean('has_finished');
             $table->unsignedBigInteger('target_amount');
