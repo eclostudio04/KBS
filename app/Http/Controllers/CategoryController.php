@@ -47,6 +47,7 @@ class CategoryController extends Controller
             $category = category::create($validated);
         });
 
+        // berfungsi untuk menampilkan data yang sudah dibuat di halaman depan kategori
         return redirect()->route('admin.categories.index');
     }
 
