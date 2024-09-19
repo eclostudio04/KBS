@@ -19,7 +19,7 @@
                     <div class="item-card flex flex-row justify-between items-center">
                         <div class="flex flex-row items-center gap-x-3">
                             <img src="{{ Storage::url($category->icon) }}" alt="icon"
-                                class="rounded-2xl object-cover w-[90px] h-[90px]">
+                                class="rounded-2xl object-cover w-[70px] h-[70px]">
                             <div class="flex flex-col">
                                 <h3 class="text-indigo-950 text-xl font-bold">{{ $category->name }}</h3>
                             </div>
@@ -29,10 +29,11 @@
                             <h3 class="text-indigo-950 text-xl font-bold">{{ $category->created_at }}</h3>
                         </div>
                         <div class="hidden md:flex flex-row items-center gap-x-3">
-                            <a href="#" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
+                            <a href="{{ route('admin.categories.edit', $category) }}"
+                                class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
                                 Edit
                             </a>
-                            <form action="#" method="POST">
+                            <form action="{{ route('admin.categories.destroy', $category) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="font-bold py-4 px-6 bg-red-700 text-white rounded-full">
