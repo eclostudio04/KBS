@@ -27,7 +27,7 @@ class StoreFundraisingRequest extends FormRequest
             'categories_id' => ['required', 'integer'],
             'target_amount' => ['required', 'integer'],
             'thumbnail' => ['required', 'image', 'mimes:png,jpg,jpeg'],
-            'about' => ['requires', 'string', 'max:7000'],
+            'about' => ['required', 'string', 'max:7000'],
         ];
     }
 }

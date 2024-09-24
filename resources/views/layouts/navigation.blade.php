@@ -43,6 +43,11 @@
                         </x-nav-link>
                     @endrole
 
+                    {{-- navigasi fundraiser --}}
+                    <x-nav-link :href="route('admin.fundraisers.index')" :active="request()->routeIs('admin.fundraisers.index')">
+                        {{ __('Penggalang Donasi') }}
+                    </x-nav-link>
+
                     @role('fundraiser')
                         {{-- navigasi my-withdrawals --}}
                         <x-nav-link :href="route('admin.my_withdrawals')" :active="request()->routeIs('admin.my_withdrawals')">
@@ -50,10 +55,7 @@
                         </x-nav-link>
                     @endrole
 
-                    {{-- navigasi fundraiser --}}
-                    <x-nav-link :href="route('admin.fundraisers.index')" :active="request()->routeIs('admin.fundraisers.index')">
-                        {{ __('Penggalang Donasi') }}
-                    </x-nav-link>
+
                 </div>
             </div>
 

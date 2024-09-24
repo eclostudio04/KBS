@@ -12,8 +12,8 @@ class fundraisingwithdrawal extends Model
 
     //
     protected $fillable = [
-        'fundraisings_id',
-        'fundraisers_id',
+        'fundraising_id',
+        'fundraiser_id',
         'has_received',
         'has_set',
         'amount_requested',

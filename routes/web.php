@@ -45,36 +45,36 @@ Route::middleware('auth')->group(function () {
         Route::resource('fundraising_withdrawals', FundraisingWithdrawalController::class)
             ->middleware('role:owner|fundraiser');
 
-        Route::post('/fundraisingwithdrawals/request/{fundraising}', [FundraisingWithdrawalController::class, 'store'])
+        Route::post('/fundraising_withdrawals/request/{fundraising}', [FundraisingWithdrawalController::class, 'store'])
             ->middleware('role:fundraiser')
-            ->name('fundraisingwithdrawals.store');
+            ->name('fundraising_withdrawals.store');
 
         // prefix fundraisingphase
-        Route::resource('fundraisingphase', FundraisingPhaseController::class)
+        Route::resource('fundraising_phases', FundraisingPhaseController::class)
             ->middleware('role:owner|fundraiser');
 
-        Route::post('/fundraisingphase/request/{fundraising}', [FundraisingPhaseController::class, 'store'])
+        Route::post('/fundraising_phases/request/{fundraising}', [FundraisingPhaseController::class, 'store'])
             ->middleware('role:fundraiser')
-            ->name('fundraisiphase.store');
+            ->name('fundraising_phases.store');
 
         // prefix fundraising
         Route::resource('fundraisings', FundraisingController::class)
             ->middleware('role:owner|fundraiser');
 
-        Route::post('/fundraisings/active/{fundraising}', [FundraisingController::class, 'active_fundraising'])
+        Route::post('/fundraisings/active/{fundraising}', [FundraisingController::class, 'activate_fundraising'])
             ->middleware('role:owner')
-            ->name('fundraisings.active_fundraising');
+            ->name('fundraising_withdrawals.activate_fundraising');
 
 
         // link route tambahan
         Route::post('/fundraiser/apply', [DashboardController::class, 'apply_fundraiser'])
             ->name('fundraiser.apply');
 
-        Route::get('/my-withdrawals', [DashboardController::class, 'my-withdrawals'])
-            ->name('my-withdrawals');
+        Route::get('/my-withdrawals', [DashboardController::class, 'my_withdrawals'])
+            ->name('my_withdrawals');
 
-        Route::get('/my-withdrawals/details/{fundraisingwithdrawal}', [DashboardController::class, 'my-withdrawals'])
-            ->name('my-withdrawals.details');
+        Route::get('/my-withdrawals/details/{fundraisingWithdrawal}', [DashboardController::class, 'my_withdrawals'])
+            ->name('my_withdrawals.details');
     });
 });
 

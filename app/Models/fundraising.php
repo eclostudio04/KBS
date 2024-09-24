@@ -13,8 +13,8 @@ class fundraising extends Model
 
     //
     protected $fillable = [
-        'fundraisers_id',
-        'categories_id',
+        'fundraiser_id',
+        'category_id',
         'name',
         'slug',
         'thumbnail',

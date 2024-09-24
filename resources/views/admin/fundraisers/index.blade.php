@@ -51,7 +51,7 @@
                                     PENDING
                                 </span>
                                 <div class="hidden md:flex flex-row items-center gap-x-3">
-                                    <form action="{{ route('admin.fundraiser.update', $fundraiser) }}" method="POST">
+                                    <form action="{{ route('admin.fundraisers.update', $fundraiser) }}" method="POST">
                                         @csrf
                                         @method('PUT')
                                         <button type="submit"
@@ -100,7 +100,8 @@
                                 PENDING
                             </span>
                         @elseif($fundraiserStatus == 'Active')
-                            <a href="#" class="font-bold py-4 px-6 bg-indigo-700  text-white rounded-full">
+                            <a href="{{ route('admin.fundraisings.create') }}"
+                                class="font-bold py-4 px-6 bg-indigo-700  text-white rounded-full">
                                 Buat Penggalangan Dana
                             </a>
                         @else

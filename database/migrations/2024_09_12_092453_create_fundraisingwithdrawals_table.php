@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('fundraisingwithdrawals', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('fundraisings_id')->constrained()->onDelete('cascade');
-            $table->foreignId('fundraisers_id')->constrained()->onDelete('cascade');
+            $table->foreignId('fundraising_id')->constrained()->onDelete('cascade');
+            $table->foreignId('fundraiser_id')->constrained()->onDelete('cascade');
             $table->boolean('has_received');
             $table->boolean('has_set');
             $table->unsignedBigInteger('amount_requested');

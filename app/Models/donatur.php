@@ -16,7 +16,7 @@ class donatur extends Model
     protected $fillable = [
         'name',
         'phone_number',
-        'fundraisings_id',
+        'fundraising_id',
         'total_amount',
         'note',
         'is_paid',

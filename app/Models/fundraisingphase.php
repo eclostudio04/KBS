@@ -11,7 +11,7 @@ class fundraisingphase extends Model
     use HasFactory, SoftDeletes;
     protected $fillable = [
         'name',
-        'fundraisings_id',
+        'fundraising_id',
         'photo',
         'note'
     ];

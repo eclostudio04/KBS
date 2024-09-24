@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('donatur', function (Blueprint $table) {
+        Schema::create('donaturs', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('phone_number');
             $table->foreignId('fundraising_id')->constrained()->onDelete('cascade');
             $table->unsignedBigInteger('total_amount');
-            $table->text('note');
+            $table->string('note');
             $table->boolean('is_paid');
             $table->string('proof');
             $table->softDeletes();
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('donatur');
+        Schema::dropIfExists('donaturs');
     }
 };
