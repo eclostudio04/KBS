@@ -26,11 +26,11 @@ Route::middleware('auth')->group(function () {
     // prefix admin
     Route::prefix('admin')->name('admin.')->group(function () {
 
-        // prefix link category
+        //category
         Route::resource('categories', CategoryController::class)
             ->middleware('role:owner');
 
-        // prefix donatur
+        //donatur
         Route::resource('donaturs', DonaturController::class)
             ->middleware('role:owner');
 

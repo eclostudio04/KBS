@@ -16,9 +16,9 @@ class fundraisingphase extends Model
         'note'
     ];
 
-    //relasi kardinalitas
-    public function fundraisings()
-    {
-        return $this->belongsTo(fundraising::class);
-    }
+    // //relasi kardinalitas
+    // public function fundraisings()
+    // {
+    //     return $this->belongsTo(fundraising::class);
+    // }
 }

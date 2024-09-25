@@ -24,12 +24,6 @@ class User extends Authenticatable
         'avatar'
     ];
 
-    //
-    public function fundraiser()
-    {
-        return $this->hasOne(fundraiser::class);
-    }
-
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -51,5 +45,11 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    //
+    public function fundraiser()
+    {
+        return $this->hasOne(fundraiser::class);
     }
 }

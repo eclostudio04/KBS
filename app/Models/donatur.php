@@ -24,7 +24,7 @@ class donatur extends Model
     ];
 
     //
-    public function fundraisings()
+    public function fundraising()
     {
         return $this->belongsTo(fundraising::class);
     }

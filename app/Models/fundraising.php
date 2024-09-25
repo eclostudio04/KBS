@@ -25,12 +25,12 @@ class fundraising extends Model
     ];
 
     //
-    public function fundraisers()
+    public function fundraiser()
     {
         return $this->belongsTo(fundraiser::class);
     }
 
-    public function categories()
+    public function category()
     {
         return $this->belongsTo(category::class);
     }
