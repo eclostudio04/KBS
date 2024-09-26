@@ -19,7 +19,7 @@
                 @forelse ($fundraisings as $fundraising)
                     <div class="item-card flex flex-col md:flex-row gap-y-10 justify-between md:items-center">
                         <div class="flex flex-row items-center gap-x-3">
-                            <img src="{{ Storage::url($fundraisng->thumbnail) }}" alt=""
+                            <img src="{{ Storage::url($fundraising->thumbnail) }}" alt=""
                                 class="rounded-2xl object-cover w-[120px] h-[90px]">
                             <div class="flex flex-col">
                                 <h3 class="text-indigo-950 text-xl font-bold">{{ $fundraising->name }}</h3>
@@ -32,7 +32,7 @@
                         </div>
                         <div class="hidden md:flex flex-col">
                             <p class="text-slate-500 text-sm">Donaturs</p>
-                            <h3 class="text-indigo-950 text-xl font-bold">{{ $fundraising->donaturs->count() }}</h3>
+                            <h3 class="text-indigo-950 text-xl font-bold">{{ $fundraising->donatur->count() }}</h3>
                         </div>
                         <div class="hidden md:flex flex-col">
                             <p class="text-slate-500 text-sm">Fundraiser</p>

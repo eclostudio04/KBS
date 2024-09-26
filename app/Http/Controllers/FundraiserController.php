@@ -14,7 +14,7 @@ class FundraiserController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $fundraiser = fundraiser::orderByDesc('id')->get();
+        $fundraisers = fundraiser::orderByDesc('id')->get();
 
         $fundraiserStatus = null;
 

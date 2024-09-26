@@ -10,6 +10,7 @@ class fundraising extends Model
 {
     use HasFactory, SoftDeletes;
     //
+    protected $table = 'fundraisings';
 
     //
     protected $fillable = [
@@ -25,17 +26,17 @@ class fundraising extends Model
     ];
 
     //
-    public function fundraiser()
-    {
-        return $this->belongsTo(fundraiser::class);
-    }
-
     public function category()
     {
         return $this->belongsTo(category::class);
     }
 
-    public function donaturs()
+    public function fundraiser()
+    {
+        return $this->belongsTo(fundraiser::class);
+    }
+
+    public function donatur()
     {
         return $this->hasMany(donatur::class)->where('is_paid', 1);
     }

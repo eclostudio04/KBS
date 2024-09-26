@@ -48,7 +48,7 @@
                     <div class="mt-4">
                         <x-input-label for="category" :value="__('category')" />
 
-                        <select name="categories_id" id="categories_id"
+                        <select name="category_id" id="category_id"
                             class="py-3 rounded-lg pl-3 w-full border border-slate-300">
                             <option value="">Plilih Kategori</option>
                             @foreach ($categories as $category)

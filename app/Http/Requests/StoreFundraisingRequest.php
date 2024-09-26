@@ -24,7 +24,7 @@ class StoreFundraisingRequest extends FormRequest
         return [
             //
             'name' => ['required', 'string', 'max:225'],
-            'categories_id' => ['required', 'integer'],
+            'category_id' => ['required', 'integer'],
             'target_amount' => ['required', 'integer'],
             'thumbnail' => ['required', 'image', 'mimes:png,jpg,jpeg'],
             'about' => ['required', 'string', 'max:7000'],

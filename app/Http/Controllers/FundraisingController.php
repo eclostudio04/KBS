@@ -19,7 +19,6 @@ class FundraisingController extends Controller
     //display a listing of the resource
     public function index()
     {
-
         // return view('admin.fundraisings.index');
         $user = Auth::user();
 
@@ -68,7 +67,7 @@ class FundraisingController extends Controller
 
             $validated['slug'] = Str::slug($validated['name']);
 
-            $validated['fundraisers_id'] = $fundraiser->id;
+            $validated['fundraiser_id'] = $fundraiser->id;
             $validated['is_active'] = false;
             $validated['has_finished'] = false;
 

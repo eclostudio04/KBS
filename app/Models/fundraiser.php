@@ -10,6 +10,7 @@ class fundraiser extends Model
 {
     use HasFactory, SoftDeletes;
     //
+    protected $table = 'fundraisers';
 
     //
     protected $fillable = [

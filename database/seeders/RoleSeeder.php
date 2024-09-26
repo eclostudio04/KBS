@@ -28,9 +28,9 @@ class RoleSeeder extends Seeder
         ]);
 
         $userOwner = User::create([
-            'name' => 'Owner KBS',
+            'name' => 'Admin KBS',
             'avatar' => 'images/default-avatar.png',
-            'email' => 'kbskomunitasberbagisodara@gmail.com',
+            'email' => 'kbs@gmail.com',
             'password' => bcrypt('adminkbs123')
         ]);
 
