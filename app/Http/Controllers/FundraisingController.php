@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreFundraisingRequest;
+use App\Http\Requests\UpdateFundraisingRequest;
 use App\Models\category;
 use App\Models\fundraiser;
 use App\Models\fundraising;
@@ -25,7 +26,7 @@ class FundraisingController extends Controller
         $fundraisingQuery = fundraising::with([
             'category',
             'fundraiser',
-            'donatur'
+            'donaturs'
         ])->orderByDesc('id');
 
         if ($user->hasRole('fundraiser')) {
@@ -47,7 +48,17 @@ class FundraisingController extends Controller
     }
 
     //route costume
-    public function activate_fundraising() {}
+    public function activate_fundraising(fundraising $fundraising)
+    {
+        DB::transaction(function () use ($fundraising) {
+
+            // proses validasi
+            $fundraising->update([
+                'is_active' => true
+            ]);
+        });
+        return redirect()->route('admin.fundraisings.show', $fundraising);
+    }
 
     // **
     //display a listing of the resource
@@ -77,8 +88,57 @@ class FundraisingController extends Controller
     }
 
     //
-    public function show(fundraising $fundraising) {}
+    public function show(fundraising $fundraising)
+    {
+        //
+        $totalDonations = $fundraising->totalReachAmount();
+        $goalReached = $totalDonations >= $fundraising->target_amount;
+
+        $percentage = ($totalDonations / $fundraising->target_amount) * 100;
+        if ($percentage > 100) {
+            $percentage = 100;
+        }
+
+        return view('admin.fundraisings.show', compact('fundraising', 'goalReached', 'percentage', 'totalDonations'));
+    }
 
     //
-    public function edit(fundraising $fundraising) {}
+    public function edit(fundraising $fundraising)
+    {
+        $categories = category::all();
+        return view('admin.fundraisings.edit', compact('fundraising', 'categories'));
+    }
+
+    public function update(UpdateFundraisingRequest $request, fundraising $fundraising)
+    {
+        DB::transaction(function () use ($request, $fundraising) {
+            $validated = $request->validated();
+
+            if ($request->hasFile('thumbnail')) {
+                $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
+                $validated['thumbnail'] = $thumbnailPath;
+            }
+
+            $validated['slug'] = Str::slug($validated['name']);
+
+            // proses update data
+            $fundraising->update($validated);
+        });
+
+        return redirect()->route('admin.fundraisings.show', $fundraising);
+    }
+
+    public function destroy(fundraising $fundraising)
+    {
+        DB::beginTransaction();
+
+        try {
+            $fundraising->delete();
+            DB::commit();
+            return redirect()->route('admin.fundraisings.index');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->route('admin.fundraisings.index');
+        }
+    }
 }

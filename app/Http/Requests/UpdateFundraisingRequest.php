@@ -24,10 +24,10 @@ class UpdateFundraisingRequest extends FormRequest
         return [
             //
             'name' => ['required', 'string', 'max:225'],
-            'categories_id' => ['required', 'integer'],
+            'category_id' => ['required', 'integer'],
             'target_amount' => ['required', 'integer'],
             'thumbnail' => ['sometimes', 'image', 'mimes:png,jpg,jpeg'],
-            'about' => ['requires', 'string', 'max:7000'],
+            'about' => ['required', 'string', 'max:7000'],
         ];
     }
 }

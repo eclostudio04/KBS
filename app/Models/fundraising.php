@@ -36,7 +36,7 @@ class fundraising extends Model
         return $this->belongsTo(fundraiser::class);
     }
 
-    public function donatur()
+    public function donaturs()
     {
         return $this->hasMany(donatur::class)->where('is_paid', 1);
     }
