@@ -52,7 +52,7 @@ class FundraisingController extends Controller
     {
         DB::transaction(function () use ($fundraising) {
 
-            // proses validasi
+            // proses validasi penggalangan donasi
             $fundraising->update([
                 'is_active' => true
             ]);
@@ -94,12 +94,14 @@ class FundraisingController extends Controller
         $totalDonations = $fundraising->totalReachAmount();
         $goalReached = $totalDonations >= $fundraising->target_amount;
 
+        $hasRequestedWithdrawal = $fundraising->withdrawals()->exists();
+
         $percentage = ($totalDonations / $fundraising->target_amount) * 100;
         if ($percentage > 100) {
             $percentage = 100;
         }
 
-        return view('admin.fundraisings.show', compact('fundraising', 'goalReached', 'percentage', 'totalDonations'));
+        return view('admin.fundraisings.show', compact('hasRequestedWithdrawal', 'fundraising', 'goalReached', 'percentage', 'totalDonations'));
     }
 
     //
