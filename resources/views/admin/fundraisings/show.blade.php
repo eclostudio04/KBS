@@ -121,7 +121,7 @@
 
                                 <button type="submit"
                                     class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
-                                    Request Withdraw
+                                    Permintaan Penarikan
                                 </button>
                             </div>
                         </form>

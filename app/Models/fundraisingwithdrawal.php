@@ -9,13 +9,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class fundraisingwithdrawal extends Model
 {
     use HasFactory, SoftDeletes;
+    //
+    protected $table = 'fundraisingwithdrawals';
 
     //
     protected $fillable = [
         'fundraising_id',
         'fundraiser_id',
         'has_received',
-        'has_set',
+        'has_sent',
         'amount_requested',
         'amount_received',
         'bank_name',

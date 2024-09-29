@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('fundraising_id')->constrained()->onDelete('cascade');
             $table->foreignId('fundraiser_id')->constrained()->onDelete('cascade');
             $table->boolean('has_received');
-            $table->boolean('has_set');
+            $table->boolean('has_sent');
             $table->unsignedBigInteger('amount_requested');
             $table->unsignedBigInteger('amount_received');
             $table->string('bank_name');

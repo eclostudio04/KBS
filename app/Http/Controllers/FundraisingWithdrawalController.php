@@ -36,6 +36,6 @@ class FundraisingWithdrawalController extends Controller
             $fundraising->withdrawals()->create($validated);
         });
 
-        return redirect()->route('admin.my-withdrawals');
+        return redirect()->route('admin.my_withdrawals');
     }
 }
