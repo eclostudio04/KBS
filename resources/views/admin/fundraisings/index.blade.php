@@ -43,7 +43,7 @@
                         <div class="hidden md:flex flex-row items-center gap-x-3">
                             <a href={{ route('admin.fundraisings.show', $fundraising) }}"
                                 class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
-                                View Details
+                                Lihat Detail
                             </a>
                         </div>
                     </div>

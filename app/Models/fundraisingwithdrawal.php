@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class fundraisingwithdrawal extends Model
+class FundraisingWithdrawal extends Model
 {
     use HasFactory, SoftDeletes;
     //
-    protected $table = 'fundraisingwithdrawals';
+    protected $table = 'fundraising_withdrawals';
 
     //
     protected $fillable = [
@@ -29,11 +29,11 @@ class fundraisingwithdrawal extends Model
     //
     public function fundraiser()
     {
-        return $this->belongsTo(fundraiser::class);
+        return $this->belongsTo(Fundraiser::class);
     }
 
     public function fundraising()
     {
-        return $this->belongsTo(fundraising::class);
+        return $this->belongsTo(Fundraising::class);
     }
 }

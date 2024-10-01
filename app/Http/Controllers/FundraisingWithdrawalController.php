@@ -3,19 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreFundraisingWithdrawalRequest;
+use App\Http\Requests\UpdateFundraisingWithdrawalRequest;
 use Illuminate\Http\Request;
-use App\Models\fundraising;
-use App\Models\fundraiser;
+use App\Models\Fundraising;
+use App\Models\Fundraiser;
+use App\Models\FundraisingWithdrawal;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class FundraisingWithdrawalController extends Controller
 {
     //
-    public function index() {}
+    public function index()
+    {
+        $fundraising_withdrawals = FundraisingWithdrawal::orderByDesc('id')->get();
+        return view('admin.fundraising_withdrawals.index', compact('fundraising_withdrawals'));
+    }
 
     // fungsi store
-    public function store(StoreFundraisingWithdrawalRequest $request, fundraising $fundraising)
+    public function store(StoreFundraisingWithdrawalRequest $request, Fundraising $fundraising)
     {
         $hasRequestedWithdrawal = $fundraising->withdrawals()->exists();
 
@@ -36,6 +42,29 @@ class FundraisingWithdrawalController extends Controller
             $fundraising->withdrawals()->create($validated);
         });
 
-        return redirect()->route('admin.my_withdrawals');
+        return redirect()->route('admin.my-withdrawals');
+    }
+
+    public function show(FundraisingWithdrawal $fundraisingWithdrawal)
+    {
+        return view('admin.fundraising_withdrawals.show', compact('fundraisingWithdrawal'));
+    }
+
+    public function update(UpdateFundraisingWithdrawalRequest $request, FundraisingWithdrawal $fundraisingWithdrawal)
+    {
+        DB::transaction(function () use ($request, $fundraisingWithdrawal) {
+            $validated = $request->validated();
+
+            if ($request->hasFile('proof')) {
+                $proofPath = $request->file('proof')->store('proofs', 'public');
+                $validated['proof'] = $proofPath;
+            }
+
+            $validated['has_sent'] = 1;
+
+            $fundraisingWithdrawal->update($validated);
+        });
+
+        return redirect()->route('admin.fundraising_withdrawals.show', $fundraisingWithdrawal);
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
-use App\Models\category;
+use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -15,7 +15,7 @@ class CategoryController extends Controller
     // **
     public function index()
     {
-        $categories = category::all();
+        $categories = Category::all();
 
         return view('admin.categories.index', compact('categories'));
     }
@@ -45,7 +45,7 @@ class CategoryController extends Controller
             $validated['slug'] = Str::slug($validated['name']);
 
             // proses penyimpanan data
-            $category = category::create($validated);
+            $category = Category::create($validated);
         });
 
         // berfungsi untuk menampilkan data yang sudah dibuat di halaman depan kategori
@@ -53,10 +53,10 @@ class CategoryController extends Controller
     }
 
     //
-    public function show(category $category) {}
+    public function show(Category $category) {}
 
     //
-    public function edit(category $category)
+    public function edit(Category $category)
     {
         return view('admin.categories.edit', compact('category'));
     }
@@ -64,7 +64,7 @@ class CategoryController extends Controller
 
 
     //
-    public function update(UpdateCategoryRequest $request, category $category)
+    public function update(UpdateCategoryRequest $request, Category $category)
     {
         DB::transaction(function () use ($request, $category) {
             $validated = $request->validated();
@@ -84,7 +84,7 @@ class CategoryController extends Controller
     }
 
     //
-    public function destroy(category $category)
+    public function destroy(Category $category)
     {
         DB::beginTransaction();
 

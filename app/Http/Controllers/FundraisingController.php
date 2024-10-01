@@ -6,7 +6,7 @@ use App\Http\Requests\StoreFundraisingRequest;
 use App\Http\Requests\UpdateFundraisingRequest;
 use App\Models\category;
 use App\Models\fundraiser;
-use App\Models\fundraising;
+use App\Models\Fundraising;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -23,7 +23,7 @@ class FundraisingController extends Controller
         // return view('admin.fundraisings.index');
         $user = Auth::user();
 
-        $fundraisingQuery = fundraising::with([
+        $fundraisingQuery = Fundraising::with([
             'category',
             'fundraiser',
             'donaturs'
@@ -43,12 +43,12 @@ class FundraisingController extends Controller
     //show the form for creating of resource
     public function create()
     {
-        $categories = category::all();
+        $categories = Category::all();
         return view('admin.fundraisings.create', compact('categories'));
     }
 
     //route costume
-    public function activate_fundraising(fundraising $fundraising)
+    public function activate_fundraising(Fundraising $fundraising)
     {
         DB::transaction(function () use ($fundraising) {
 
@@ -66,7 +66,7 @@ class FundraisingController extends Controller
     {
         // membuat sistem untuk menyimpan data
         // **
-        $fundraiser = fundraiser::where('user_id', Auth::user()->id)->first();
+        $fundraiser = Fundraiser::where('user_id', Auth::user()->id)->first();
 
         DB::transaction(function () use ($request, $fundraiser) {
             $validated = $request->validated();
@@ -88,7 +88,7 @@ class FundraisingController extends Controller
     }
 
     //
-    public function show(fundraising $fundraising)
+    public function show(Fundraising $fundraising)
     {
         //
         $totalDonations = $fundraising->totalReachAmount();
@@ -105,13 +105,13 @@ class FundraisingController extends Controller
     }
 
     //
-    public function edit(fundraising $fundraising)
+    public function edit(Fundraising $fundraising)
     {
-        $categories = category::all();
+        $categories = Category::all();
         return view('admin.fundraisings.edit', compact('fundraising', 'categories'));
     }
 
-    public function update(UpdateFundraisingRequest $request, fundraising $fundraising)
+    public function update(UpdateFundraisingRequest $request, Fundraising $fundraising)
     {
         DB::transaction(function () use ($request, $fundraising) {
             $validated = $request->validated();
@@ -130,7 +130,7 @@ class FundraisingController extends Controller
         return redirect()->route('admin.fundraisings.show', $fundraising);
     }
 
-    public function destroy(fundraising $fundraising)
+    public function destroy(Fundraising $fundraising)
     {
         DB::beginTransaction();
 

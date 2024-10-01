@@ -30,86 +30,99 @@
                     </svg>
                     <div class="flex flex-col gap-y-10">
                         <div>
-                            <p class="text-slate-500 text-sm">Total Amount</p>
+                            <p class="text-slate-500 text-sm">Jumlah Total</p>
                             <h3 class="text-indigo-950 text-xl font-bold">Rp
-                                {{ number_format($fundraisingwithdrawal->amount_requested, 0, ',', '.') }}</h3>
+                                {{ number_format($fundraisingWithdrawal->amount_requested, 0, ',', '.') }}</h3>
                         </div>
 
-
-                        <span class="w-fit text-sm font-bold py-2 px-3 rounded-full bg-green-500 text-white">
-                            BERHASIL
-                        </span>
-                        <span class="w-fit text-sm font-bold py-2 px-3 rounded-full bg-orange-500 text-white">
-                            TERTUNDA
-                        </span>
+                        @if ($fundraisingWithdrawal->has_sent)
+                            @if ($fundraisingWithdrawal->has_received)
+                                <span class="w-fit text-sm font-bold py-2 px-3 rounded-full bg-green-500 text-white">
+                                    TERKIRIM
+                                </span>
+                            @else
+                                <span class="w-fit text-sm font-bold py-2 px-3 rounded-full bg-indigo-500 text-white">
+                                    DIPROSES
+                                </span>
+                            @endif
+                        @else
+                            <span class="w-fit text-sm font-bold py-2 px-3 rounded-full bg-orange-500 text-white">
+                                TERTUNDA
+                            </span>
+                        @endif
 
                         <div>
                             <p class="text-slate-500 text-sm">Tanggal</p>
-                            <h3 class="text-indigo-950 text-xl font-bold">{{ $fundraisingwithdrawal->created_at }}</h3>
+                            <h3 class="text-indigo-950 text-xl font-bold">{{ $fundraisingWithdrawal->created_at }}</h3>
                         </div>
                     </div>
                     <div>
-                        <img src="{{ Storage::url($fundraisingwithdrawal->fundraising->thumbnail) }}" alt=""
+                        <img src="{{ Storage::url($fundraisingWithdrawal->fundraising->thumbnail) }}" alt=""
                             class="rounded-2xl object-cover w-[300px] h-[200px] mb-3">
-                        <h3 class="text-indigo-950 text-xl font-bold">{{ $fundraisingwithdrawal->fundraising->name }}
+                        <h3 class="text-indigo-950 text-xl font-bold">{{ $fundraisingWithdrawal->fundraising->name }}
                         </h3>
-                        <p class="text-slate-500 text-sm">Bencana Alam</p>
+                        <p class="text-slate-500 text-sm">{{ $fundraisingWithdrawal->fundraising->category->name }}</p>
                     </div>
                 </div>
                 <hr class="my-5">
 
-                {{-- @if ($fundraisingwithdrawal->has_sent) --}}
-                <h3 class="text-indigo-950 text-xl font-bold mb-5">Sent to:</h3>
-                <div class="flex flex-row gap-x-10">
-                    <div>
-                        <p class="text-slate-500 text-sm">Bank</p>
-                        <h3 class="text-indigo-950 text-xl font-bold">Angga Capital</h3>
-                    </div>
-                    <div>
-                        <p class="text-slate-500 text-sm">No Account</p>
-                        <h3 class="text-indigo-950 text-xl font-bold">08123092093</h3>
-                    </div>
-                    <div>
-                        <p class="text-slate-500 text-sm">Account Name</p>
-                        <h3 class="text-indigo-950 text-xl font-bold">Indonesia Berbagi</h3>
-                    </div>
-                    <div>
+                @if ($fundraisingWithdrawal->has_sent)
+                    <h3 class="text-indigo-950 text-xl font-bold mb-5">Kirim ke:</h3>
+                    <div class="flex flex-row gap-x-10">
+                        <div>
+                            <p class="text-slate-500 text-sm">Bank</p>
+                            <h3 class="text-indigo-950 text-xl font-bold">{{ $fundraisingWithdrawal->bank_name }}</h3>
+                        </div>
+                        <div>
+                            <p class="text-slate-500 text-sm">No Rekening</p>
+                            <h3 class="text-indigo-950 text-xl font-bold">
+                                {{ $fundraisingWithdrawal->bank_account_number }}
+                            </h3>
+                        </div>
+                        <div>
+                            <p class="text-slate-500 text-sm">Nama Akun</p>
+                            <h3 class="text-indigo-950 text-xl font-bold">
+                                {{ $fundraisingWithdrawal->bank_account_name }}
+                            </h3>
+                        </div>
+                        {{-- <div>
                         <p class="text-slate-500 text-sm">SWIFT Code</p>
                         <h3 class="text-indigo-950 text-xl font-bold">ANCAP</h3>
+                    </div> --}}
                     </div>
-                </div>
 
 
-                <hr class="my-5">
-                <h3 class="text-indigo-950 text-xl font-bold mb-5">Already Proccessed</h3>
-                <img src="https://i.pinimg.com/236x/68/ed/dc/68eddcea02ceb29abde1b1c752fa29eb.jpg" alt=""
-                    class="rounded-2xl object-cover w-[300px] h-[200px] mb-3">
-                <hr class="my-5">
-                <h3 class="text-indigo-950 text-xl font-bold">Have You Delivered Money?</h3>
-                <form action="#" method="POST">
-                    @csrf
-                    <div>
-                        <x-input-label for="name" :value="__('Name')" />
-                        <x-text-input id="name" class="block mt-1 w-full" type="text" name="name"
-                            :value="old('name')" required autofocus autocomplete="name" />
-                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
-                    </div>
-                    <div class="mt-4">
-                        <x-input-label for="notes" :value="__('notes')" />
-                        <textarea name="notes" id="notes" cols="30" rows="5" class="border border-slate-300 rounded-xl w-full"></textarea>
-                        <x-input-error :messages="$errors->get('notes')" class="mt-2" />
-                    </div>
-                    <div class="mt-4 w-fit">
-                        <x-input-label for="photo" :value="__('photo')" />
-                        <x-text-input id="photo" class="mb-7 block mt-1 w-full" type="file" name="photo"
-                            required autofocus autocomplete="photo" />
-                        <x-input-error :messages="$errors->get('photo')" class="mt-2" />
-                    </div>
-                    <button type="submit" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
-                        Update Donation
-                    </button>
-                </form>
-                {{-- @endif --}}
+                    <hr class="my-5">
+                    <h3 class="text-indigo-950 text-xl font-bold mb-5">Sudah Diproses</h3>
+                    <img src="{{ Storage::url($fundraisingWithdrawal->proof) }}"
+                        alt="{{ Storage::url($fundraisingWithdrawal->proof) }}"
+                        class="rounded-2xl object-cover w-[300px] h-[200px] mb-3">
+                    <hr class="my-5">
+                    <h3 class="text-indigo-950 text-xl font-bold">Apakah Uang Sudah di Kirim?</h3>
+                    <form action="#" method="POST">
+                        @csrf
+                        <div>
+                            <x-input-label for="name" :value="__('Name')" />
+                            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name"
+                                :value="old('name')" required autofocus autocomplete="name" />
+                            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                        </div>
+                        <div class="mt-4">
+                            <x-input-label for="notes" :value="__('notes')" />
+                            <textarea name="notes" id="notes" cols="30" rows="5" class="border border-slate-300 rounded-xl w-full"></textarea>
+                            <x-input-error :messages="$errors->get('notes')" class="mt-2" />
+                        </div>
+                        <div class="mt-4 w-fit">
+                            <x-input-label for="photo" :value="__('photo')" />
+                            <x-text-input id="photo" class="mb-7 block mt-1 w-full" type="file" name="photo"
+                                required autofocus autocomplete="photo" />
+                            <x-input-error :messages="$errors->get('photo')" class="mt-2" />
+                        </div>
+                        <button type="submit" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
+                            Update Donation
+                        </button>
+                    </form>
+                @endif
             </div>
         </div>
     </div>

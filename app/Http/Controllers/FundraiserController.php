@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\fundraiser;
+use App\Models\Fundraiser;
 use App\Models\fundraising;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +14,7 @@ class FundraiserController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $fundraisers = fundraiser::orderByDesc('id')->get();
+        $fundraisers = Fundraiser::orderByDesc('id')->get();
 
         $fundraiserStatus = null;
 
@@ -27,7 +27,7 @@ class FundraiserController extends Controller
     }
 
     //
-    public function update(Request $request, fundraiser $fundraiser)
+    public function update(Request $request, Fundraiser $fundraiser)
     {
         $user = $fundraiser->user;
 

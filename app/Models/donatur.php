@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class donatur extends Model
+class Donatur extends Model
 {
     use HasFactory, SoftDeletes;
     //
@@ -26,6 +26,6 @@ class donatur extends Model
     //
     public function fundraising()
     {
-        return $this->belongsTo(fundraising::class);
+        return $this->belongsTo(Fundraising::class);
     }
 }
