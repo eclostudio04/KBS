@@ -91,37 +91,41 @@
                     </div> --}}
                     </div>
 
-
                     <hr class="my-5">
                     <h3 class="text-indigo-950 text-xl font-bold mb-5">Sudah Diproses</h3>
                     <img src="{{ Storage::url($fundraisingWithdrawal->proof) }}"
                         alt="{{ Storage::url($fundraisingWithdrawal->proof) }}"
                         class="rounded-2xl object-cover w-[300px] h-[200px] mb-3">
-                    <hr class="my-5">
-                    <h3 class="text-indigo-950 text-xl font-bold">Apakah Uang Sudah di Kirim?</h3>
-                    <form action="#" method="POST">
-                        @csrf
-                        <div>
-                            <x-input-label for="name" :value="__('Name')" />
-                            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name"
-                                :value="old('name')" required autofocus autocomplete="name" />
-                            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-                        </div>
-                        <div class="mt-4">
-                            <x-input-label for="notes" :value="__('notes')" />
-                            <textarea name="notes" id="notes" cols="30" rows="5" class="border border-slate-300 rounded-xl w-full"></textarea>
-                            <x-input-error :messages="$errors->get('notes')" class="mt-2" />
-                        </div>
-                        <div class="mt-4 w-fit">
-                            <x-input-label for="photo" :value="__('photo')" />
-                            <x-text-input id="photo" class="mb-7 block mt-1 w-full" type="file" name="photo"
-                                required autofocus autocomplete="photo" />
-                            <x-input-error :messages="$errors->get('photo')" class="mt-2" />
-                        </div>
-                        <button type="submit" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
-                            Update Donation
-                        </button>
-                    </form>
+
+                    @if (!$fundraisingWithdrawal->has_received)
+                        <hr class="my-5">
+                        <h3 class="text-indigo-950 text-xl font-bold">Apakah Uang Sudah di Kirim?</h3>
+                        <form
+                            action="{{ route('admin.fundraising_phases.store', $fundraisingWithdrawal->fundraising_id) }}"
+                            method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div>
+                                <x-input-label for="name" :value="__('Name')" />
+                                <x-text-input id="name" class="block mt-1 w-full" type="text" name="name"
+                                    :value="old('name')" required autofocus autocomplete="name" />
+                                <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                            </div>
+                            <div class="mt-4">
+                                <x-input-label for="note" :value="__('note')" />
+                                <textarea name="note" id="note" cols="30" rows="5" class="border border-slate-300 rounded-xl w-full"></textarea>
+                                <x-input-error :messages="$errors->get('note')" class="mt-2" />
+                            </div>
+                            <div class="mt-4 w-fit">
+                                <x-input-label for="photo" :value="__('photo')" />
+                                <x-text-input id="photo" class="mb-7 block mt-1 w-full" type="file"
+                                    name="photo" required autofocus autocomplete="photo" />
+                                <x-input-error :messages="$errors->get('photo')" class="mt-2" />
+                            </div>
+                            <button type="submit" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
+                                Update Donasi
+                            </button>
+                        </form>
+                    @endif
                 @endif
             </div>
         </div>

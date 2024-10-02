@@ -69,7 +69,7 @@
                         <h3 class="text-indigo-950 text-xl font-bold">{{ $fundraisingWithdrawal->fundraising->name }}
                         </h3>
                         <p class="text-slate-500 text-sm">Rp
-                            {{ number_format($fundraisingWithdrawal->target_amount, 0, ',', '.') }}</p>
+                            {{ number_format($fundraisingWithdrawal->fundraising->target_amount, 0, ',', '.') }}</p>
                     </div>
                 </div>
                 <hr class="my-5">
@@ -80,12 +80,12 @@
                         <h3 class="text-indigo-950 text-xl font-bold">{{ $fundraisingWithdrawal->bank_name }}</h3>
                     </div>
                     <div>
-                        <p class="text-slate-500 text-sm">No Account</p>
+                        <p class="text-slate-500 text-sm">No. Rekening</p>
                         <h3 class="text-indigo-950 text-xl font-bold">{{ $fundraisingWithdrawal->bank_account_number }}
                         </h3>
                     </div>
                     <div>
-                        <p class="text-slate-500 text-sm">Account Name</p>
+                        <p class="text-slate-500 text-sm">Nama Akun</p>
                         <h3 class="text-indigo-950 text-xl font-bold">{{ $fundraisingWithdrawal->bank_account_name }}
                         </h3>
                     </div>
@@ -94,16 +94,16 @@
                         <h3 class="text-indigo-950 text-xl font-bold">ANCAP</h3>
                     </div> --}}
                 </div>
-                <hr class="my-5">
 
                 @if ($fundraisingWithdrawal->has_sent)
+                    <hr class="my-5">
                     <h3 class="text-indigo-950 text-xl font-bold mb-5">Sudah Diproses</h3>
                     <img src="{{ Storage::url($fundraisingWithdrawal->proof) }}" alt=""
                         class="rounded-2xl object-cover w-[300px] h-[200px] mb-3">
                 @else
                     <hr class="my-5">
-                    <form action="{{ route('admin.fundraising_withdrawals.update', $fundraisingWithdrawal->id) }}"
-                        method="POST">
+                    <form action="{{ route('admin.fundraising_withdrawals.update', $fundraisingWithdrawal) }}"
+                        method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="mt-4 w-fit">
