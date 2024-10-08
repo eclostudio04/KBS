@@ -23,4 +23,25 @@ class FrontController extends Controller
 
         return view('front.views.index', compact('categories', 'fundraisings'));
     }
+
+    public function category(Category $category)
+    {
+        return view('front.views.category', compact('category'));
+    }
+
+    public function details(Fundraising $fundraising)
+    {
+        $goalReached = $fundraising->totalReachAmount() >= $fundraising->target_amount;
+        return view('front.views.details', compact('fundraising', 'goalReached'));
+    }
+
+    public function support(Fundraising $fundraising)
+    {
+        return view('front.views.donation', compact('fundraising'));
+    }
+
+    public function checkout(Fundraising $fundraising)
+    {
+        // return view('front.views.checkout', compact('fundraising'));
+    }
 }
