@@ -40,8 +40,11 @@ class FrontController extends Controller
         return view('front.views.donation', compact('fundraising'));
     }
 
-    public function checkout(Fundraising $fundraising)
+    public function checkout(Fundraising $fundraising, $totalAmountDonation)
     {
-        // return view('front.views.checkout', compact('fundraising'));
+        //
+        return view('front.views.checkout', compact('fundraising', 'totalAmountDonation'));
     }
+
+    public function store(Fundraising $fundraising,) {}
 }
