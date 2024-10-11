@@ -23,7 +23,7 @@ class StoreDonaturRequest extends FormRequest
     {
         return [
             //
-            'nama' => ['required', 'string', 'max:225'],
+            'name' => ['required', 'string', 'max:225'],
             'phone_number' => ['required', 'string'],
             'proof' => ['required', 'image', 'mimes:png,jpg,jpeg'],
             'note' => ['required', 'string', 'max:7000'],

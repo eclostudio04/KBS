@@ -33,9 +33,9 @@
         <div class="flex flex-col z-30">
             <div id="content"
                 class="w-full min-h-[calc(100vh-220px)] h-full bg-white rounded-t-[40px] flex flex-col gap-5 p-[30px_24px_30px]">
-                <form
+                <form method="POST"
                     action="{{ route('front.store', ['fundraising' => $fundraising->slug, 'totalAmountDonation' => $totalAmountDonation]) }}"
-                    class="flex flex-col gap-5" enctype="multipart/front-data">
+                    class="flex flex-col gap-5" enctype="multipart/form-data">
                     @csrf
                     <div class="flex flex-col gap-[10px]">
                         <p class="font-semibold text-sm">Donasi Kamu</p>
@@ -94,7 +94,7 @@
                                 <img src="{{ asset('assets/images/icons/user.svg') }}" class="h-full w-full object-contain"
                                     alt="icon">
                             </div>
-                            <input type="text"
+                            <input type="string"
                                 class="font-semibold placeholder:text-[#292E4B] placeholder:font-normal w-full outline-none"
                                 placeholder="Siapa Nama Mu?" name="name">
                         </div>
@@ -107,7 +107,7 @@
                                 <img src="{{ asset('assets/images/icons/call.svg') }}" class="h-full w-full object-contain"
                                     alt="icon">
                             </div>
-                            <input type="number"
+                            <input type="string"
                                 class="font-semibold placeholder:text-[#292E4B] placeholder:font-normal w-full outline-none"
                                 placeholder="Masukan No.WA" name="phone_number">
                         </div>
@@ -135,7 +135,7 @@
                                 <img src="{{ asset('assets/images/icons/sms.svg') }}"
                                     class="h-full w-full object-contain" alt="icon">
                             </div>
-                            <textarea name="note" id="notes"
+                            <textarea name="note" id="note"
                                 class="font-semibold placeholder:text-[#292E4B] placeholder:font-normal w-full outline-none" cols="30"
                                 rows="4" placeholder="Berikan Doa dan Semangat"></textarea>
                         </div>
