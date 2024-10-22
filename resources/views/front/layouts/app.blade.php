@@ -8,6 +8,9 @@
     <link href="{{ asset('css/output.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
         rel="stylesheet" />
+
+    {{-- tailwind css --}}
+    @vite('resources/css/app.css')
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('assets/js/flickity.min.css') }}" media="screen">
     @stack('after-styles')
@@ -17,8 +20,18 @@
 
 <body class="font-poppins text-[#292E4B] bg-[#F6F9FC]">
 
+    {{-- navbar --}}
+    {{-- <navbar>
+        @include('front.component.navbar')
+    </navbar> --}}
+
+
     {{-- isi konten yang berbeda beda sesuai dengan halaman --}}
     @yield('content')
+
+    {{-- footer --}}
+    @include('front.component.footer')
+
 
     <!-- JavaScript -->
 

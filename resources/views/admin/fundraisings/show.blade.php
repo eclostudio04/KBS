@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col">
-                        <p class="text-slate-500 text-sm">Donaturs</p>
+                        <p class="text-slate-500 text-sm">Donatur</p>
                         <h3 class="text-indigo-950 text-xl font-bold">{{ $fundraising->donaturs->count() }}</h3>
                     </div>
                     <div class="flex flex-row items-center gap-x-3">
@@ -70,7 +70,7 @@
                     <div>
                         <h3 class="text-indigo-950 text-xl font-bold">Rp
                             {{ number_format($totalDonations, 0, ',', '.') }}</h3>
-                        <p class="text-slate-500 text-sm">Funded</p>
+                        <p class="text-slate-500 text-sm">Tercapai</p>
                     </div>
                     <div class="w-[400px] rounded-full h-2.5 bg-slate-300">
                         <div class="bg-indigo-600 h-2.5 rounded-full" style="width: {{ $percentage }}%"></div>
@@ -78,7 +78,7 @@
                     <div>
                         <h3 class="text-indigo-950 text-xl font-bold">Rp
                             {{ number_format($fundraising->target_amount, 0, ',', '.') }}</h3>
-                        <p class="text-slate-500 text-sm">Goal</p>
+                        <p class="text-slate-500 text-sm">Target</p>
                     </div>
                 </div>
                 {{-- akhir informasi donasi --}}
@@ -95,14 +95,14 @@
                             @csrf
 
                             <div>
-                                <x-input-label for="bank_name" :value="__('bank_name')" />
+                                <x-input-label for="bank_name" :value="__('Nama Bank')" />
                                 <x-text-input id="bank_name" class="block mt-1 w-full" type="text" name="bank_name"
                                     :value="old('bank_name')" required autofocus autocomplete="bank_name" />
                                 <x-input-error :messages="$errors->get('bank_name')" class="mt-2" />
                             </div>
 
                             <div class="mt-4">
-                                <x-input-label for="bank_account_name" :value="__('bank_account_name')" />
+                                <x-input-label for="bank_account_name" :value="__('Nama Akun')" />
                                 <x-text-input id="bank_account_name" class="block mt-1 w-full" type="text"
                                     name="bank_account_name" :value="old('bank_account_name')" required autofocus
                                     autocomplete="bank_account_name" />
@@ -110,7 +110,7 @@
                             </div>
 
                             <div class="mt-4">
-                                <x-input-label for="bank_account_number" :value="__('bank_account_number')" />
+                                <x-input-label for="bank_account_number" :value="__('Nomor Rekening')" />
                                 <x-text-input id="bank_account_number" class="block mt-1 w-full" type="text"
                                     name="bank_account_number" :value="old('bank_account_number')" required autofocus
                                     autocomplete="bank_account_number" />

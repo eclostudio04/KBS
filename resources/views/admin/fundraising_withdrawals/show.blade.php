@@ -107,7 +107,7 @@
                         @csrf
                         @method('PUT')
                         <div class="mt-4 w-fit">
-                            <x-input-label for="proof" :value="__('proof')" />
+                            <x-input-label for="proof" :value="__('Bukti')" />
                             <x-text-input id="proof" class="mb-7 block mt-1 w-full" type="file" name="proof"
                                 required autofocus autocomplete="proof" />
                             <x-input-error :messages="$errors->get('proof')" class="mt-2" />

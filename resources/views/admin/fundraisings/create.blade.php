@@ -22,7 +22,7 @@
 
                     {{-- create nama --}}
                     <div>
-                        <x-input-label for="name" :value="__('Name')" />
+                        <x-input-label for="name" :value="__('Nama')" />
                         <x-text-input id="name" class="block mt-1 w-full" type="text" name="name"
                             :value="old('name')" required autofocus autocomplete="name" />
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
@@ -30,7 +30,7 @@
 
                     {{-- create thumnail --}}
                     <div class="mt-4">
-                        <x-input-label for="thumbnail" :value="__('thumbnail')" />
+                        <x-input-label for="thumbnail" :value="__('Foto')" />
                         <x-text-input id="thumbnail" class="block mt-1 w-full" type="file" name="thumbnail" required
                             autofocus autocomplete="thumbnail" />
                         <x-input-error :messages="$errors->get('thumbnail')" class="mt-2" />
@@ -38,7 +38,7 @@
 
                     {{-- create target amount --}}
                     <div class="mt-4">
-                        <x-input-label for="target_amount" :value="__('target_amount')" />
+                        <x-input-label for="target_amount" :value="__('Target Dana')" />
                         <x-text-input id="target_amount" class="block mt-1 w-full" type="number" name="target_amount"
                             :value="old('target_amount')" required autofocus autocomplete="target_amount" />
                         <x-input-error :messages="$errors->get('target_amount')" class="mt-2" />
@@ -46,7 +46,7 @@
 
                     {{-- create kategori --}}
                     <div class="mt-4">
-                        <x-input-label for="category" :value="__('category')" />
+                        <x-input-label for="category" :value="__('Kategori')" />
 
                         <select name="category_id" id="category_id"
                             class="py-3 rounded-lg pl-3 w-full border border-slate-300">
@@ -61,7 +61,7 @@
 
                     {{-- create about --}}
                     <div class="mt-4">
-                        <x-input-label for="about" :value="__('about')" />
+                        <x-input-label for="about" :value="__('Tentang')" />
                         <textarea name="about" id="about" cols="30" rows="5" class="border border-slate-300 rounded-xl w-full"></textarea>
                         <x-input-error :messages="$errors->get('about')" class="mt-2" />
                     </div>

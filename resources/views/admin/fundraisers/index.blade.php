@@ -34,7 +34,7 @@
 
                             @if ($fundraiser->is_active)
                                 <span class="w-fit text-sm font-bold py-2 px-3 rounded-full bg-green-500 text-white">
-                                    ACTIVE
+                                    AKTIF
                                 </span>
                                 <div class="hidden md:flex flex-row items-center gap-x-3">
                                     <form action="#" method="POST">
@@ -48,7 +48,7 @@
                                 </div>
                             @else
                                 <span class="w-fit text-sm font-bold py-2 px-3 rounded-full bg-orange-500 text-white">
-                                    PENDING
+                                    TERTUNDA
                                 </span>
                                 <div class="hidden md:flex flex-row items-center gap-x-3">
                                     <form action="{{ route('admin.fundraisers.update', $fundraiser) }}" method="POST">
@@ -56,7 +56,7 @@
                                         @method('PUT')
                                         <button type="submit"
                                             class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
-                                            Approve
+                                            DISETUJUI
                                         </button>
                                     </form>
                                 </div>
